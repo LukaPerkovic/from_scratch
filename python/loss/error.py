@@ -1,13 +1,22 @@
-import numpy as np
+from numpy import array, mean
+from math import sqrt
 
 
 def mae(y_pred, y):
-    return np.mean(abs(np.array(y_pred) - np.array(y)))
+    return mean(abs(array(y_pred) - array(y)))
 
 
 def mse(y_pred, y):
-    pass
+    return mean((array(y_pred) - array(y)) ** 2)
+
+
+def mape(y_pred, y):
+    return mean(abs(array(y_pred) - array(y)) / y) * 100
+
+
+def rmse(y_pred, y):
+    return sqrt(mse(y_pred, y))
 
 
 if __name__ == "__main__":
-    print(mae([1, 2], [1, 2]))
+    print(mape([5, 7, 10], [6, 6, 6]))
