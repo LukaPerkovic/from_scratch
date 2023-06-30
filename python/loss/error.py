@@ -19,4 +19,16 @@ def rmse(y_pred, y):
 
 
 if __name__ == "__main__":
-    print(mape([5, 7, 10], [6, 6, 6]))
+
+    def count(func):
+        def wrapper():
+            print(len(func()))
+
+        return wrapper
+
+    def split(string):
+        return list(string)
+
+    print(split("Hello"))
+
+    split = count(split())
