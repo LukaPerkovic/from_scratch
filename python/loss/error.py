@@ -1,34 +1,33 @@
-from numpy import array, mean
-from math import sqrt
-
-
 def mae(y_pred, y):
-    return mean(abs(array(y_pred) - array(y)))
+    return (y_pred - y).abs().mean()
 
 
 def mse(y_pred, y):
-    return mean((array(y_pred) - array(y)) ** 2)
+    return ((y_pred - y) ** 2).mean()
 
 
 def mape(y_pred, y):
-    return mean(abs(array(y_pred) - array(y)) / y) * 100
+    return ((abs(y_pred - y) / y) * 100).mean()
 
 
 def rmse(y_pred, y):
-    return sqrt(mse(y_pred, y))
+    return ((y_pred - y) ** 2).mean().sqrt()
 
 
 if __name__ == "__main__":
 
-    def count(func):
-        def wrapper():
-            print(len(func()))
+    def my_decorator(func):
+        def wrapper(*args):
+            print("I just want to say:")
+            func(*args)
+            print("Thanks for coming.")
+            return func(*args)
 
         return wrapper
 
-    def split(string):
-        return list(string)
+    @my_decorator
+    def no_more(item):
+        print("*takes a deep breath*")
+        return f"I want no more {item}!"
 
-    print(split("Hello"))
-
-    split = count(split())
+    no_more("Taco Tuesdays")
