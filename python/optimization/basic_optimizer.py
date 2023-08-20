@@ -10,6 +10,7 @@ class SGDOptimizer:
         predictions = self.model.activate(self.params)
         loss = self.loss(predictions, self.model.y)
         loss.backward()
+        print("PARAMS:", self.params)
         for p in self.params:
             p.data -= self.learning_rate * p.grad
             p.grad = None
